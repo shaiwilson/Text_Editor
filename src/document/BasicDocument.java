@@ -28,15 +28,9 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumWords()
 	{
-		List<String> words;
-		int count = 0;
-		words = getTokens("[a-zA-Z]+");
-		for (int i = 0; i < words.size(); i++) 
-		{
-			count++;
-		}
-		
-	    return count;
+		List<String> tokens = getTokens("[a-zA-Z]+");
+		return tokens.size();
+
 	}
 	
 	/**
@@ -50,15 +44,8 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSentences()
 	{
-		List<String> words;
-		int count = 0;
-		words = getTokens("[^!|?|.]+");
-		for (int i = 0; i < words.size(); i++) 
-		{
-			count++;
-		}
-		
-	    return count;
+		List<String> tokens = getTokens("[^?.!]+");  
+		return tokens.size();
   
 	}
 	
@@ -73,15 +60,13 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-		List<String> words;
-	    int count = 0;
-	    words = getTokens("[aeiouyAEIOUY]+");
-	    for (int i = 0; i < words.size(); i++) 
+		List<String> tokens = getTokens("[a-zA-Z]+");
+		int totalSyllables = 0;
+		for (String word : tokens)
 		{
-			count++;
+			totalSyllables += countSyllables(word);
 		}
-	    
-	    return count;
+		return totalSyllables;
       
 	}
 	

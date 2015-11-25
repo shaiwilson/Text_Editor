@@ -50,19 +50,27 @@ public abstract class Document {
 	// next week when we implement the EfficientDocument class.
 	protected int countSyllables(String word)
 	{
-		int count = 0;
-		for (char c : word.toCharArray()) 
+		int numSyllables = 0;
+		boolean newSyllable = true;
+		String vowels = "aeiouy";
+		char[] cArray = word.toCharArray();
+		for (int i = 0; i < cArray.length; i++)
 		{
-			if ((c == 'a') ||
-					(c == 'e') ||
-					(c == 'i') ||
-					(c == 'o') ||
-					(c == 'u') ||
-					(c == 'y'))
-					count++;
+		    if (i == cArray.length-1 && Character.toLowerCase(cArray[i]) == 'e' 
+		    		&& newSyllable && numSyllables > 0) {
+                numSyllables--;
+            }
+		    if (newSyllable && vowels.indexOf(Character.toLowerCase(cArray[i])) >= 0) {
+				newSyllable = false;
+				numSyllables++;
+			}
+			else if (vowels.indexOf(Character.toLowerCase(cArray[i])) < 0) {
+				newSyllable = true;
+			}
 		}
-		
-	    return count;
+		//System.out.println( "found " + numSyllables);
+		return numSyllables;
+	    
 
 	}
 	
