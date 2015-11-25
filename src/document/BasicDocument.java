@@ -4,7 +4,7 @@ import java.util.List;
 
 /** 
  * A naive implementation of the Document abstract class. 
- * @author UC San Diego Intermediate Programming MOOC team
+ * @author Shai Wilson
  */
 public class BasicDocument extends Document 
 {
@@ -28,9 +28,15 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumWords()
 	{
-		//TODO: Implement this method.  See the Module 1 support videos 
-	    // if you need help.
-	    return 0;
+		List<String> words;
+		int count = 0;
+		words = getTokens("[a-zA-Z]+");
+		for (int i = 0; i < words.size(); i++) 
+		{
+			count++;
+		}
+		
+	    return count;
 	}
 	
 	/**
@@ -44,9 +50,16 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSentences()
 	{
-	    //TODO: Implement this method.  See the Module 1 support videos 
-        // if you need help.
-        return 0;
+		List<String> words;
+		int count = 0;
+		words = getTokens("[^!|?|.]+");
+		for (int i = 0; i < words.size(); i++) 
+		{
+			count++;
+		}
+		
+	    return count;
+  
 	}
 	
 	/**
@@ -60,9 +73,16 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-	    //TODO: Implement this method.  See the Module 1 support videos 
-        // if you need help.
-        return 0;
+		List<String> words;
+	    int count = 0;
+	    words = getTokens("[aeiouyAEIOUY]+");
+	    for (int i = 0; i < words.size(); i++) 
+		{
+			count++;
+		}
+	    
+	    return count;
+      
 	}
 	
 	

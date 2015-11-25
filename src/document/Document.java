@@ -38,7 +38,7 @@ public abstract class Document {
 		while (m.find()) {
 			tokens.add(m.group());
 		}
-		
+		//System.out.println("tokeN" + tokens);
 		return tokens;
 	}
 	
@@ -50,10 +50,20 @@ public abstract class Document {
 	// next week when we implement the EfficientDocument class.
 	protected int countSyllables(String word)
 	{
-		// TODO: Implement this method so that you can call it from the 
-	    // getNumSyllables method in BasicDocument (module 1) and 
-	    // EfficientDocument (module 2).
-	    return 0;
+		int count = 0;
+		for (char c : word.toCharArray()) 
+		{
+			if ((c == 'a') ||
+					(c == 'e') ||
+					(c == 'i') ||
+					(c == 'o') ||
+					(c == 'u') ||
+					(c == 'y'))
+					count++;
+		}
+		
+	    return count;
+
 	}
 	
 	/** A method for testing
