@@ -70,7 +70,6 @@ public abstract class Document {
 		}
 		//System.out.println( "found " + numSyllables);
 		return numSyllables;
-	    
 
 	}
 	
@@ -134,10 +133,10 @@ public abstract class Document {
 	/** return the Flesch readability score of this document */
 	public double getFleschScore()
 	{
-	    // TODO: Implement this method
-	    return 0.0;
+		double wordCount = (double)getNumWords();
+	    double fleschScore = 206.85 - (1.015 * ((wordCount/getNumSentences()))
+	    		- (84.6 * (((double)getNumSyllables())/wordCount)));
+	    return fleschScore;
 	}
-	
-	
 	
 }
