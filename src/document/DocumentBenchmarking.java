@@ -26,6 +26,8 @@ public class DocumentBenchmarking {
 	    // You can play around with this
 		int increment = 20000;
 
+		double nano = 1000000000.0;
+		
 		// The number of steps to run.  
 		// You can play around with this.
 		int numSteps = 20;
@@ -41,24 +43,57 @@ public class DocumentBenchmarking {
 				numToCheck += increment)
 		{
 			// numToCheck holds the number of characters that you should read from the 
-			// file to create both a BasicDocument and an EfficientDocument.  
+			// file to create both a BasicDocument and an EfficientDocument. 
+			System.out.println("numToCheck: " + numToCheck);
 			
-			/* Each time through this loop you should:
-			 * 1. Print out numToCheck followed by a tab (\t) (NOT a newline)
-			 * 2. Read numToCheck characters from the file into a String
-			 *     Hint: use the helper method below.
-			 * 3. Time a loop that runs trials times (trials is the variable above) that:
-			 *     a. Creates a BasicDocument 
-			 *     b. Calls fleshScore on this document
-			 * 4. Print out the time it took to complete the loop in step 3 
-			 *      (on the same line as the first print statement) followed by a tab (\t)
-			 * 5. Time a loop that runs trials times (trials is the variable above) that:
-			 *     a. Creates an EfficientDocument 
-			 *     b. Calls fleshScore on this document
-			 * 6. Print out the time it took to complete the loop in step 5 
-			 *      (on the same line as the first print statement) followed by a newline (\n) 
-			 */  
-			 
+			// Read numToCheck characters from the file into a String
+			String stringFile = getStringFromFile(textfile, numToCheck);
+			
+			// Time a loop that runs trials times
+			Long startTime = System.nanoTime();
+			System.out.println("start time: " + startTime);
+			System.out.print("\t");
+			
+			for (int trialsTime = 0; trialsTime < trials; trialsTime++){
+				
+				// Creates a BasicDocument 
+				// Calls fleshScore on this document
+				BasicDocument myBasDoc = new BasicDocument(stringFile);
+				double basicFleshScore = myBasDoc.getFleschScore();
+				
+			}
+			
+			long endTime = System.nanoTime();
+			System.out.print(endTime);
+			System.out.print("\t");
+			
+			// Time it took to complete the loop
+			// divide by 1 billion because it's in nano seconds
+			double estTime = (endTime - startTime)/nano;
+			System.out.print(estTime);
+			
+			// Time a loop that runs trials times on EfficientDocument
+			startTime = System.nanoTime();
+			System.out.println(startTime);
+			System.out.print("\t");
+			
+			for (int trialsTime = 0; trialsTime < trials; trialsTime++){
+				
+				// Creates a EfficientDocument
+				// Calls fleshScore on this document
+				EfficientDocument myEffDoc = new EfficientDocument(stringFile);
+				double effFleshScore = myEffDoc.getFleschScore();
+			}
+			
+			endTime = System.nanoTime();
+			System.out.print(endTime);
+			System.out.print("\t");
+			
+			estTime = (endTime - startTime)/nano;
+			System.out.print(estTime);
+			System.out.println();
+			
+			
 		}
 	
 	}
