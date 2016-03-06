@@ -38,14 +38,18 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		LLNode<E> newNode = new LLNode<E>(element);
 		
 		if ( isEmpty() ) {
-			head = newNode;
+			head.next = newNode;
+			newNode.next = tail;
+			tail.prev = newNode;
 		}
 		else {
-			newNode.prev = tail;
-			tail.next = newNode;
+			newNode.next = tail;
+			newNode.prev = tail.prev;
+			newNode.next.prev = newNode;
+			newNode.prev.next = newNode;
+		
 		}
 		
-		tail = newNode;
 		size++;
 		return true;
 		
@@ -60,7 +64,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		
 		
-		if (index < 0 || index > size) {
+		if (head == null || index > size) {
 			   throw new IndexOutOfBoundsException();
 			   
 		}
