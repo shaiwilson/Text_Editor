@@ -9,11 +9,14 @@ import java.util.AbstractList;
  *
  * @param <E> The type of the elements stored in the list
  */
+
+
 public class MyLinkedList<E> extends AbstractList<E> {
 	private LLNode<E> head;
 	private LLNode<E> tail;
 	int size;
 
+	
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 		// TODO: Implement this method
@@ -29,11 +32,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
+	
 	public boolean add(E element ) 
 	{
-		// TODO: Implement this method
-		
-		// create new node
+
 		LLNode<E> newNode = new LLNode<E>(element);
 		
 		newNode.next = tail;
@@ -43,12 +45,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		
 		size++;
 		
-		return false;
+		return true;
+		
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
-	public E get(int index) 
+	
+	public LLNode<E> get(int index) 
 	{
 		
 		LLNode<E> curr = null;
@@ -78,8 +82,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			}
 		}
 		
-		
-		return curr.data;
+		return curr;
 		
 	}
 
@@ -190,7 +193,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		// TODO: Implement this method
-		return null;
+		LLNode<E> temp = get(index);
+		E oldVal = temp.data;
+		temp.data = element;
+		return oldVal;
+		
 	} 
 	
 	
