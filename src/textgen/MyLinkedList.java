@@ -12,6 +12,7 @@ import java.util.AbstractList;
 
 
 public class MyLinkedList<E> extends AbstractList<E> {
+	
 	private LLNode<E> head;
 	private LLNode<E> tail;
 	int size;
@@ -37,24 +38,22 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		LLNode<E> newNode = new LLNode<E>(element);
 		
-		if ( isEmpty() ) {
-			head.next = newNode;
-			newNode.next = tail;
-			tail.prev = newNode;
+		if ( head == null) {
+
+			head = tail = newNode;
+
 		}
 		else {
 			newNode.next = tail;
 			newNode.prev = tail.prev;
 			newNode.next.prev = newNode;
 			newNode.prev.next = newNode;
-		
 		}
 		
 		size++;
 		return true;
 		
-		
-		
+	
 	}
 
 	/** Get the element at position index 
@@ -63,8 +62,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) throws IndexOutOfBoundsException
 	{
 		
-		
-		if (head == null || index > size) {
+		if (head.next == null || index < 0 || index > size) {
 			   throw new IndexOutOfBoundsException();
 			   
 		}
@@ -81,7 +79,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public LLNode<E> goTo(int index){
 		
 		LLNode<E> curr = head;
-		for (int i = 0; i < index; i++){
+		for (int i = 0; i < index && curr.next != null; i++){
 			curr = curr.next;
 		}
 		
