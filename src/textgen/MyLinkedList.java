@@ -192,18 +192,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public E set(int index, E element) 
 	{
-		// TODO: Implement this method
+		
 		LLNode<E> temp = get(index);
 		E oldVal = temp.data;
 		temp.data = element;
 		return oldVal;
-		
+	
 	} 
 	
 	
 	/**
 	 * Returns true if the linked list is empty
-	 * 
 	 */
 	
 	public boolean isEmpty(){
@@ -246,28 +245,28 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		
 	}
 	
-	/// For output
-	public String toString(){
-		
-		StringBuilder sb = new StringBuilder("[");
-		LLNode<E> curr = head;
-		
-		while (curr != null){
-			
-			sb.append(curr.data);
-			if (curr.next != null){
-			
-				sb.append(", ");
-			}
-			
-			curr = curr.next;
-			
-		}
-		
-		sb.append("]");
-		return sb.toString();
-		
-	}
+//	/// For output
+//	public String toString(){
+//		
+//		StringBuilder sb = new StringBuilder("[");
+//		LLNode<E> curr = head;
+//		
+//		while (curr != null){
+//			
+//			sb.append(curr.data);
+//			if (curr.next != null){
+//			
+//				sb.append(", ");
+//			}
+//			
+//			curr = curr.next;
+//			
+//		}
+//		
+//		sb.append("]");
+//		return sb.toString();
+//		
+//	}
 		
 } // close double linked list class
 
