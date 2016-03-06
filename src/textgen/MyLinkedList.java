@@ -56,11 +56,11 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	
-	public E get(int index) throws IndexOutOfBoundsException
+	public E get(int index) 
 	{
 		LLNode<E> curr = new LLNode<E>();
 		
-		if (index <= 0 || index > size()) {
+		if (index < 0 || index > size) {
 			   throw new IndexOutOfBoundsException();
 		}
 		else {
@@ -69,6 +69,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			
 		}
 
+		System.out.println("hey");
+		System.out.println(curr.data);
 		return curr.data;
 	}
 	
@@ -90,7 +92,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		// begin from the side of the list closest to the index
 		
 		
-		if (index <= 0 || index > size()) 
+		if (index <= 0 || index > size) 
 		{
 //			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
@@ -106,6 +108,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 				}
 			}
 			else {
+				
 				curr = tail;
 				for (int i = size-1; i >= index; i--){
 					curr = curr.prev;
@@ -144,7 +147,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		}
 		
 		// inserting at the end of a non-empty list
-		else if ( index == size() ){
+		else if ( index == size ){
 			newNode.prev = tail;
 			tail.next = newNode;
 			tail = newNode;
@@ -167,14 +170,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Return the size of the list */
 	public int size() 
 	{
-		int count = 0;
-		LLNode<E> curr = head;
-		while (curr != null){
-			curr = curr.next;
-			count++;
-		}
 		
-		return count;
+		return size;
 		
 	}
 
@@ -186,7 +183,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public E remove(int index) 
 	{
-		// TODO: Implement this method
 		
 		if (index < 0 || index >= size)
 		{
@@ -218,6 +214,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 				
 			}
 			
+			size--;
 			return returnData;
 			
 		}
