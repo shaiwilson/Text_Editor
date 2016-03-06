@@ -91,6 +91,41 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element ) 
 	{
 		// TODO: Implement this method
+		
+		LLNode<E> newNode = new LLNode<E>(element);
+		
+		// inserting into an empty list
+		if ( isEmpty() ){
+			head = newNode;
+			tail = newNode;
+		}
+		
+		// inserting at the beg of a non-empty list
+		else if (index == 0){
+			newNode.next = head;
+			head.prev = newNode;
+			head = newNode;
+			
+		}
+		
+		// inserting at the end of a non-empty list
+		else if ( index == size() ){
+			newNode.prev = tail;
+			tail.next = newNode;
+			tail = newNode;
+		}
+		
+		// inserting somewhere else
+		
+		else {
+			
+			LLNode before = (LLNode) get(index-1);
+			
+		}
+		
+		
+		
+		
 	}
 
 
@@ -142,9 +177,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			
 		}
 		
-		
-		
-		
 		return null;
 	}
 
@@ -163,8 +195,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	
 	
 	/**
-	 * Appends an element to the end of the list
-	 * @param element The element to add
+	 * Returns true if the linked list is empty
+	 * 
 	 */
 	
 	public boolean isEmpty(){
@@ -174,6 +206,37 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		else {
 			return false;
 		}
+	}
+	
+	/**
+	 * This method reverses the list by walking through the list, swapping
+     * the next and prev pointers of every node. It then swaps the head and
+     * tail.
+	 * 
+	 */
+	
+	public void reverse(){
+		
+		LLNode<E> curr = head;
+		
+		while (curr != null){
+			LLNode<E> nextNode = curr.next;
+			curr.next = curr.prev;
+			curr.prev = nextNode;
+			
+			if(nextNode != null)
+			{
+				nextNode.next = curr;
+				
+			}
+			
+			curr = curr.next;
+		}
+		
+		LLNode<E> oldHead = head;
+		head = tail;
+		tail = oldHead;
+		
 	}
 	
 	/// For output
@@ -197,18 +260,9 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		sb.append("]");
 		return sb.toString();
 		
-		
-		
-		
-		
-		
 	}
-	
-	
-	
-	
-	
-}
+		
+} // close double linked list class
 
 class LLNode<E> 
 {
