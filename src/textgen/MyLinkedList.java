@@ -93,10 +93,7 @@ class LLNode<E>
 	LLNode<E> next;
 	E data;
 
-	// TODO: Add any other methods you think are useful here
-	// E.g. you might want to add another constructor
-	
-	public LLNodE()
+	public LLNode()
 	{
 		this.next = null;
 		this.prev = null;
