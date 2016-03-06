@@ -51,7 +51,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) 
 	{
 		
-		LLNode<E> curr = new LLNode<E>();
+		LLNode<E> curr = null;
 		
 		// begin from the side of the list closest to the index
 		
@@ -175,6 +175,39 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			return false;
 		}
 	}
+	
+	/// For output
+	public String toString(){
+		
+		StringBuilder sb = new StringBuilder("[");
+		LLNode<E> curr = head;
+		
+		while (curr != null){
+			
+			sb.append(curr.data);
+			if (curr.next != null){
+			
+				sb.append(", ");
+			}
+			
+			curr = curr.next;
+			
+		}
+		
+		sb.append("]");
+		return sb.toString();
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }
 
 class LLNode<E> 
@@ -204,6 +237,10 @@ class LLNode<E>
 		this.next = prevNode.next;
 		prevNode.next = this;
 		
+	}
+	
+	public String toString(){
+		return data.toString();
 	}
 
 }
