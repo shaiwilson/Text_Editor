@@ -35,13 +35,23 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	
 	public boolean add(E element ) 
 	{
+		// if the list is empty
 
-		LLNode<E> newNode = new LLNode<E>(element);
+		if (head == null){
+			head = tail = new LLNode<E>();
+			head.data = element;
+			head.next = tail;
+			tail = head;
+		}
 		
-		newNode.next = tail;
-		newNode.prev = tail.prev;
-		newNode.next.prev = newNode;
-		newNode.prev.next = newNode;
+		else {
+			LLNode<E> newNode = new LLNode<E>(element);
+			newNode.next = tail;
+			newNode.prev = tail.prev;
+			newNode.next.prev = newNode;
+			newNode.prev.next = newNode;
+		}
+		
 		
 		size++;
 		
@@ -55,28 +65,32 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) 
 	{
 		
-		LLNode<E> curr = null;
+		LLNode<E> curr = new LLNode<E>();
 		
 		// begin from the side of the list closest to the index
 		
 		int mid = size / 2;
 		
 		if (index < 0 || index > size - 1) 
+		{
 			throw new IndexOutOfBoundsException();
+		}
 		else 
 		{
-			if (index <= mid)
+			if (index == 0){
+				curr = head;
+			}
+			else if (index <= mid)
 			{
 				curr = head;
-				for (int i = 0; i < index; i++)
+				for (int i = 0; i < index && curr != null; i++)
 				{
 					curr = curr.next;
 				}
 			}
 			else {
-				
 				curr = tail;
-				for (int i = size-1; i > index; i--){
+				for (int i = size-1; i > index && curr != null; i--){
 					curr = curr.prev;
 				}
 			}
@@ -193,7 +207,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		
-		LLNode<E> temp = (LLNode<E>) get(index);
+		LLNode<E> llNode = (LLNode<E>) get(index);
+		LLNode<E> temp = llNode;
 		E oldVal = temp.data;
 		temp.data = element;
 		return oldVal;
@@ -233,7 +248,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			if(nextNode != null)
 			{
 				nextNode.next = curr;
-				
 			}
 			
 			curr = curr.next;
