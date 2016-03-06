@@ -36,10 +36,13 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public boolean add(E element ) 
 	{
 		// if the list is empty
-
+		if (element == null) { 
+			throw new NullPointerException("The first argument for add is null."); 
+		}
+		
 		if (head == null){
-			head = tail = new LLNode<E>();
-			head.data = element;
+			head = tail = new LLNode<E>(element, head);
+//			head.data = element;
 			head.next = tail;
 			tail = head;
 		}
@@ -70,33 +73,63 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		// begin from the side of the list closest to the index
 		
 		int mid = size / 2;
-		
-		if (index < 0 || index > size - 1) 
+		if (index <= 0 || index > size()) 
 		{
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Index out of bounds.");
 		}
 		else 
 		{
-			if (index == 0){
-				curr = head;
-			}
-			else if (index <= mid)
+			if (index <= mid)
 			{
 				curr = head;
-				for (int i = 0; i < index && curr != null; i++)
+				for (int i = 0; i < index; i++)
 				{
 					curr = curr.next;
 				}
 			}
 			else {
 				curr = tail;
-				for (int i = size-1; i > index && curr != null; i--){
+				for (int i = size-1; i > index; i--){
 					curr = curr.prev;
 				}
 			}
 		}
 		
 		return curr.data;
+		
+	}
+	
+	public LLNode<E> getNode(int index){
+		
+		LLNode<E> curr = new LLNode<E>();
+		
+		// begin from the side of the list closest to the index
+		
+		
+		if (index <= 0 || index > size()) 
+		{
+//			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
+		else 
+		{
+			int mid = size / 2;
+			if (index <= mid)
+			{
+				curr = head;
+				for (int i = 0; i <= index; i++)
+				{
+					curr = curr.next;
+				}
+			}
+			else {
+				curr = tail;
+				for (int i = size-1; i >= index; i--){
+					curr = curr.prev;
+				}
+			}
+		}
+		
+		return curr;
 		
 	}
 
@@ -110,6 +143,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		// TODO: Implement this method
 		
 		LLNode<E> newNode = new LLNode<E>(element);
+		LLNode<E> before;
 		
 		// inserting into an empty list
 		if ( isEmpty() ){
@@ -136,7 +170,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		
 		else {
 			
-			LLNode before = (LLNode) get(index-1);
+			before = getNode(index-1);
 			
 		}
 		
@@ -149,7 +183,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Return the size of the list */
 	public int size() 
 	{
-		return size;
+		int count = 0;
+		LLNode<E> curr = head;
+		while (curr != null){
+			curr = curr.next;
+			count++;
+		}
+		
+		return count;
+		
 	}
 
 	/** Remove a node at the specified index and return its data element.
@@ -166,9 +208,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		{
 			throw new IndexOutOfBoundsException();
 		}
+		
 		else {
 			
-			E returnData;
+			E returnData = null;
 			
 			if (index == 0){
 				returnData = head.data;
@@ -182,19 +225,19 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			else {
 				
 			
-				LLNode before = (LLNode) get(index - 1);
-				LLNode remove = before.next;
-				LLNode after = remove;
+				LLNode<E> before = getNode(index - 1);
+				LLNode<E> remove = before.next;
+				LLNode<E> after = remove;
 				
 				before.next = after;
 			 
 				
 			}
 			
+			return returnData;
 			
 		}
 		
-		return null;
 	}
 
 	/**
@@ -207,7 +250,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		
-		LLNode<E> llNode = (LLNode<E>) get(index);
+		LLNode<E> llNode = getNode(index);
 		LLNode<E> temp = llNode;
 		E oldVal = temp.data;
 		temp.data = element;
@@ -260,26 +303,26 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	}
 	
 	/// For output
-	public String toString(){
-		
-		StringBuilder sb = new StringBuilder("[");
-		LLNode<E> curr = head;
-		
-		while (curr != null){
+	public String toString() {
+		if (head == null) {
 			
-			sb.append(curr.data);
-			if (curr.next != null){
+			return "[]";
 			
-				sb.append(", ");
+		} else {
+			
+			String result = "[" + head.data;
+			LLNode<E> current = head.next;
+			
+			while (current != null) {
+				
+				result += ", " + current.data;
+				current = current.next;
+				
 			}
 			
-			curr = curr.next;
-			
+			result += "]";
+			return result;
 		}
-		
-		sb.append("]");
-		return sb.toString();
-		
 	}
 		
 } // close double linked list class
