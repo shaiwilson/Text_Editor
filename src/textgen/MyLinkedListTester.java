@@ -23,6 +23,7 @@ public class MyLinkedListTester {
 	MyLinkedList<Integer> longerList;
 	MyLinkedList<Integer> list1;
 	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -42,6 +43,7 @@ public class MyLinkedListTester {
 		list1.add(65);
 		list1.add(21);
 		list1.add(42);
+		System.out.println(list1.toString());
 		
 	}
 

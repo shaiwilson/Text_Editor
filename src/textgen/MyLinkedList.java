@@ -52,7 +52,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	
-	public LLNode<E> get(int index) 
+	public E get(int index) 
 	{
 		
 		LLNode<E> curr = null;
@@ -82,7 +82,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			}
 		}
 		
-		return curr;
+		return curr.data;
 		
 	}
 
@@ -173,7 +173,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 				LLNode after = remove;
 				
 				before.next = after;
-				if 
+			 
 				
 			}
 			
@@ -193,7 +193,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		
-		LLNode<E> temp = get(index);
+		LLNode<E> temp = (LLNode<E>) get(index);
 		E oldVal = temp.data;
 		temp.data = element;
 		return oldVal;
@@ -245,28 +245,28 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		
 	}
 	
-//	/// For output
-//	public String toString(){
-//		
-//		StringBuilder sb = new StringBuilder("[");
-//		LLNode<E> curr = head;
-//		
-//		while (curr != null){
-//			
-//			sb.append(curr.data);
-//			if (curr.next != null){
-//			
-//				sb.append(", ");
-//			}
-//			
-//			curr = curr.next;
-//			
-//		}
-//		
-//		sb.append("]");
-//		return sb.toString();
-//		
-//	}
+	/// For output
+	public String toString(){
+		
+		StringBuilder sb = new StringBuilder("[");
+		LLNode<E> curr = head;
+		
+		while (curr != null){
+			
+			sb.append(curr.data);
+			if (curr.next != null){
+			
+				sb.append(", ");
+			}
+			
+			curr = curr.next;
+			
+		}
+		
+		sb.append("]");
+		return sb.toString();
+		
+	}
 		
 } // close double linked list class
 
@@ -299,8 +299,8 @@ class LLNode<E>
 		
 	}
 	
-//	public String toString(){
-//		return data.toString();
-//	}
+	public String toString(){
+		return data.toString();
+	}
 
 }
