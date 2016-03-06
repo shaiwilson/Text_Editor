@@ -299,8 +299,8 @@ class LLNode<E>
 		
 	}
 	
-	public String toString(){
-		return data.toString();
-	}
+//	public String toString(){
+//		return data.toString();
+//	}
 
 }
