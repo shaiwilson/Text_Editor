@@ -19,7 +19,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
-		// TODO: Implement this method
+		
 		size = 0;
 		head = new LLNode<E>(null);
 		tail = new LLNode<E>(null);
@@ -35,69 +35,53 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	
 	public boolean add(E element ) 
 	{
-		// if the list is empty
-		if (element == null) { 
-			throw new NullPointerException("The first argument for add is null."); 
-		}
+		LLNode<E> newNode = new LLNode<E>(element);
 		
-		if (head == null){
-			head = tail = new LLNode<E>(element, head);
-//			head.data = element;
-			head.next = tail;
-			tail = head;
+		if ( isEmpty() ) {
+			head = newNode;
 		}
-		
 		else {
-			LLNode<E> newNode = new LLNode<E>(element);
-			newNode.next = tail;
-			newNode.prev = tail.prev;
-			newNode.next.prev = newNode;
-			newNode.prev.next = newNode;
+			newNode.prev = tail;
+			tail.next = newNode;
 		}
 		
-		
+		tail = newNode;
 		size++;
-		
 		return true;
+		
+		
 		
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	
-	public E get(int index) 
+	public E get(int index) throws IndexOutOfBoundsException
 	{
-		
 		LLNode<E> curr = new LLNode<E>();
 		
-		// begin from the side of the list closest to the index
-		
-		int mid = size / 2;
-		if (index <= 0 || index > size()) 
-		{
-			throw new IndexOutOfBoundsException("Index out of bounds.");
+		if (index <= 0 || index > size()) {
+			   throw new IndexOutOfBoundsException();
 		}
-		else 
-		{
-			if (index <= mid)
-			{
-				curr = head;
-				for (int i = 0; i < index; i++)
-				{
-					curr = curr.next;
-				}
-			}
-			else {
-				curr = tail;
-				for (int i = size-1; i > index; i--){
-					curr = curr.prev;
-				}
-			}
+		else {
+			
+			curr = goTo(index);
+			
 		}
-		
+
 		return curr.data;
-		
 	}
+	
+	public LLNode<E> goTo(int index){
+		
+		LLNode<E> curr = head;
+		for (int i = 0; i < index; i++){
+			curr = curr.next;
+		}
+		
+		return curr;	
+	}
+	
 	
 	public LLNode<E> getNode(int index){
 		
