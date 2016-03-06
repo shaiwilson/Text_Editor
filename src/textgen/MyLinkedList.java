@@ -32,6 +32,16 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public boolean add(E element ) 
 	{
 		// TODO: Implement this method
+		LLNode<E> temp = new LLNode<E>();
+		
+		// create new node
+		LLNode<E> newNode = new LLNode<E>(element);
+		
+		newNode.next = tail;
+		newNode.prev = tail.prev;
+		newNode.next.prev = newNode;
+		newNode.prev.next = newNode;
+		
 		return false;
 	}
 
