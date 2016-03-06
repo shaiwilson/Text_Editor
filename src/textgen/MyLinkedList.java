@@ -56,22 +56,22 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	
-	public E get(int index) 
+	public E get(int index) throws IndexOutOfBoundsException
 	{
-		LLNode<E> curr = new LLNode<E>();
+		
 		
 		if (index < 0 || index > size) {
 			   throw new IndexOutOfBoundsException();
+			   
 		}
+		
 		else {
 			
+			LLNode<E> curr = new LLNode<E>();
 			curr = goTo(index);
+			return curr.data;
 			
 		}
-
-		System.out.println("hey");
-		System.out.println(curr.data);
-		return curr.data;
 	}
 	
 	public LLNode<E> goTo(int index){
