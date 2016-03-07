@@ -1,4 +1,4 @@
-A Markov Text Editor.
+##A Markov Text Editor.
 
 A smart text editor/processor that incorporates autocomplete, flagging misspelled words and spelling auto-correct. 
 
