@@ -38,9 +38,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		LLNode<E> newNode = new LLNode<E>(element);
 		
-		if ( head == null) {
+		if ( isEmpty() ) {
 
-			head = tail = newNode;
+//			head = tail = newNode;
+			head.data = element;
 
 		}
 		else {
@@ -61,11 +62,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	
 	public E get(int index) throws IndexOutOfBoundsException
 	{
+		if (index < 0 || index >= size()) {
+		      throw new IndexOutOfBoundsException("Invalid BasicArrayList index");
+		    }
 		
-		if (head.next == null || index < 0 || index > size) {
-			   throw new IndexOutOfBoundsException();
-			   
-		}
 		
 		else {
 			

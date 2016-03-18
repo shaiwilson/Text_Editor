@@ -43,7 +43,7 @@ public class MyLinkedListTester {
 		list1.add(65);
 		list1.add(21);
 		list1.add(42);
-		// error null pointer
+		
 		System.out.println(shortList.toString());
 		System.out.println(emptyList.toString());
 		
