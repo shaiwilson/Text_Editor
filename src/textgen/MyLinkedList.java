@@ -56,6 +56,17 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		
 	
 	}
+	
+	/** Check if the element exists in the linked list 
+	 * returns True if the element exists. False otherwise. */
+	
+	public boolean Exists(E element){
+		
+		
+		return false;
+		
+		
+	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
@@ -64,8 +75,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		if (index < 0 || index >= size()) {
 		      throw new IndexOutOfBoundsException("Invalid BasicArrayList index");
-		    }
-		
+		 }
 		
 		else {
 			
@@ -76,7 +86,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		}
 	}
 	
+	/** Get the node at position index 
+	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
+	
 	public LLNode<E> goTo(int index){
+		
+		if (index < 0 || index >= size()) {
+		      throw new IndexOutOfBoundsException("Invalid BasicArrayList index");
+		 }
 		
 		LLNode<E> curr = head;
 		for (int i = 0; i < index && curr.next != null; i++){
@@ -86,6 +103,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		return curr;	
 	}
 	
+	/** Optimization: Get the node at position index 
+	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	
 	public LLNode<E> getNode(int index){
 		
