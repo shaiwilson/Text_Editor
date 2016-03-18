@@ -2,8 +2,6 @@ package spelling;
 
 import java.util.LinkedList;
 
-import textgen.LLNode;
-
 /**
  * A class that implements the Dictionary interface using a LinkedList
  *
@@ -30,10 +28,9 @@ public class DictionaryLL implements Dictionary
      * (it wasn't already there). */
     public boolean addWord(String word) {
     	
-    	
     	word = word.toLowerCase();
-    	boolean isPresent = dict.contains(word);
-    	if (isPresent == false){
+
+    	if (!dict.contains(word) || dict.isEmpty()){
     		dict.add(word);
     		return true;
     	}
@@ -47,14 +44,22 @@ public class DictionaryLL implements Dictionary
     /** Return the number of words in the dictionary */
     public int size()
     {
-        
         return dict.size();
     }
 
     /** Is this a word according to this dictionary? */
     public boolean isWord(String s) {
-        //TODO: Implement this method
-        return false;
+    	String sToCheck = s.toLowerCase();
+    	
+    	if(dict.contains(sToCheck)){
+    		return true;
+    	} 
+    	
+    	else 
+    	{
+    		return false;
+    	}
+        
     }
 
     
