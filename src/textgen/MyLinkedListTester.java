@@ -210,6 +210,7 @@ public class MyLinkedListTester {
 		
 		}
 		
+		System.out.println(longerList.toString());
 		longerList.add(2, 10);
 		assertEquals("AddAtIndex: check value is correct ", (Integer)10, longerList.get(2));
 		assertEquals("AddAtIndex: check size is correct", 11, longerList.size());

@@ -40,19 +40,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			throw new NullPointerException("Invalid element input!!");
 		}
 		
-		LLNode<E> newNode = new LLNode<E>(element);
-		
-		if ( isEmpty() ) {
 
-			head.data = element;
-
-		}
-		else {
-			LLNode<E> prev = tail.prev;
-			prev.next = newNode;
-			newNode.prev = prev;
-			newNode.next = tail;
-			tail.prev = newNode;
+		LLNode<E> nodeToAdd = new LLNode<E>(element);
+		LLNode<E> prev = tail.prev;
+		prev.next = nodeToAdd;
+		nodeToAdd.prev = prev;
+		nodeToAdd.next = tail;
+		tail.prev = nodeToAdd;
+		size++;
+		return true;
 			
 			
 //			option 2			
@@ -61,10 +57,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 //			newNode.next.prev = newNode;
 //			newNode.prev.next = newNode;
 			
-		}
-		
-		size++;
-		return true;
 		
 	
 	}
@@ -79,13 +71,19 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		      throw new IndexOutOfBoundsException("Invalid BasicArrayList index");
 		 }
 		
-		else {
+	
+	
+		LLNode<E> target = head;
+		
+		for (int i = 0; i <= index; i++) {
 			
-			LLNode<E> curr = new LLNode<E>();
-			curr = goTo(index);
-			return curr.data;
-			
+			target = target.next;
 		}
+		
+		E value = target.data;
+		return value;
+			
+		
 	}
 	
 	/** Get the node at position index 
