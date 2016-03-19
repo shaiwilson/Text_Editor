@@ -5,7 +5,7 @@ A smart text editor/processor that incorporates autocomplete, flagging misspelle
 I developed the back-end code, in that I worked with the text, and not directly with any user interface components. This is so that I could really dig in and experiment with the different data structures that I'm learning and the running times for each of them. 
 
 | Week       | Description          | Files  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | 1     | Working with Files| document.BasicDocument.java, document.Document.java|
 | 2      | Efficiency Analysis and Benchmarking      |   document.EfficientDocument.java |
 | 3 | Interfaces, Linked Lists      |    textgen.MyLinkedList.java, textgen.MarkovTextGenerator.java, textgen.MarkovTextGenerator.java |
