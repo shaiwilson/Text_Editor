@@ -29,6 +29,27 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean addWord(String word)
 	{
 	    //TODO: Implement this method.
+		word = word.toLowerCase();
+		TrieNode node = root;
+		
+		for (int i = 0; i < word.length(); i++){
+			char c = word.charAt(i);
+			if (node.getValidNextCharacters().contains(c))
+			{
+				node = node.getChild(c);
+			}
+			else {
+				node = node.insert(c);
+			}
+		}
+		
+		if (!node.endsWord())
+		{
+			node.setEndsWord(true);
+			size++;
+			return true;
+		}
+		
 	    return false;
 	}
 	
