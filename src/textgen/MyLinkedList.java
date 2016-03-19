@@ -71,8 +71,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		      throw new IndexOutOfBoundsException("Invalid BasicArrayList index");
 		 }
 		
-	
-	
 		LLNode<E> target = head;
 		
 		for (int i = 0; i <= index; i++) {
@@ -80,10 +78,8 @@ public class MyLinkedList<E> extends AbstractList<E> {
 			target = target.next;
 		}
 		
-		E value = target.data;
-		return value;
+		return target.data;
 			
-		
 	}
 	
 	/** Get the node at position index 
@@ -193,42 +189,35 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E remove(int index) 
 	{
 		
-		if (index < 0 || index >= size)
+		if (index < 0 || index > size - 1)
 		{
 			throw new IndexOutOfBoundsException();
 		}
 		
-		else {
+		LLNode<E> nodeToRemove = head;
+		
+		for (int i = 0; i <= index; i++) {
 			
-			E returnData = null;
-			
-			if (index == 0){
-				returnData = head.data;
-				head = head.next;
-				if (head == null)
-				{
-					tail = null;
-				}
-			}
-			
-			else {
-				
-			
-				LLNode<E> before = getNode(index - 1);
-				LLNode<E> remove = before.next;
-				LLNode<E> after = remove;
-				
-				before.next = after;
-			 
-				
-			}
-			
-			size--;
-			return returnData;
+			nodeToRemove = nodeToRemove.next;
 			
 		}
 		
-	}
+		// System.out.println(nodeToRemove.data);
+		
+		LLNode<E> prev = nodeToRemove.prev;
+		LLNode<E> next = nodeToRemove.next;
+		
+		//System.out.println(prev.data);
+		
+		prev.next = next;
+		next.prev = prev;
+		size--;
+		E value = nodeToRemove.data;
+		return value;
+			
+		}
+		
+
 
 	/**
 	 * Set an index position in the list to a new element
