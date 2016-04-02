@@ -1,4 +1,5 @@
 package spelling;
+import java.util.*;
 
 import java.util.List;
 import java.util.Set;
@@ -119,6 +120,22 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 //       If it is a word, add it to the completions list
     	 //       Add all of its child nodes to the back of the queue
     	 // Return the list of completions
+    	 
+    	 String prefixToCheck = prefix.toLowerCase();
+    	 List<String> result = new LinkedList<String>();
+    	 TrieNode node = root;
+    	 
+    	 for(int i = 0; i < prefixToCheck.length(); i++){
+    		 char c = prefixToCheck.charAt(i);
+    		 if(node.getValidNextCharacters(c) == )
+    			 node.getChild(c);
+    		 else {
+    			 return result;
+    		 }
+    			 
+    		 
+    		 
+    	 }
     	 
          return null;
      }
