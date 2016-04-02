@@ -127,12 +127,24 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 
     	 for(int i = 0; i < prefixToCheck.length(); i++){
     		 char c = prefixToCheck.charAt(i);
+    		 System.out.print("prefix to check: ");
+    		 System.out.println(c);
+    		 System.out.print("i: ");
+    		 System.out.println(i);
     		 if(node.getValidNextCharacters().contains(c))
+    		 {
+    			 
     			 node.getChild(c);
+    		 	 System.out.print("get child: ");
+    		 	 System.out.println(node.getChild(c));
+    		 	 
+    		 }
+    	 
     		 else {
     			 return result;
-    		 }
+    		 	}
     	 	}
+    	 	
     		 
     		 int count = 0;
     		 if (node.endsWord())
@@ -140,6 +152,8 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     			 result.add(node.getText());
     			 count++;
     		 }
+    		 
+    		 // preform a breadth first search to generate completions
     		 
     		 List<TrieNode> nodeQueue = new LinkedList<TrieNode>();
     		 List<Character> childrenC = new LinkedList<Character>(node.getValidNextCharacters());
@@ -151,9 +165,26 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     		 }
     		 
     		 
-    	 }
+    		 while (!nodeQueue.isEmpty() && count < numCompletions){
+    			 TrieNode tn = nodeQueue.remove(0);
+    			 if (tn.endsWord()) {
+    				 result.add(tn.getText());
+    				 count++;
+    			 }
+    			 
+    			 List<Character> cs = new LinkedList<Character>(tn.getValidNextCharacters());
+    			 for (int i = 0; i < cs.size(); i++){
+    				 char c = cs.get(i);
+    				 nodeQueue.add(tn.getChild(c));
+    				 
+    			 }
+    			 
+    			 
+    			}
+    		 
+    		 
     	 
-         return null;
+         return result;
      }
 
  	// For debugging
