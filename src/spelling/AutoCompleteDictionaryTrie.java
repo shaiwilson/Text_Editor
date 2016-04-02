@@ -127,12 +127,28 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 
     	 for(int i = 0; i < prefixToCheck.length(); i++){
     		 char c = prefixToCheck.charAt(i);
-    		 if(node.getValidNextCharacters(c) == )
+    		 if(node.getValidNextCharacters().contains(c))
     			 node.getChild(c);
     		 else {
     			 return result;
     		 }
-    			 
+    	 	}
+    		 
+    		 int count = 0;
+    		 if (node.endsWord())
+    		 {
+    			 result.add(node.getText());
+    			 count++;
+    		 }
+    		 
+    		 List<TrieNode> nodeQueue = new LinkedList<TrieNode>();
+    		 List<Character> childrenC = new LinkedList<Character>(node.getValidNextCharacters());
+    		 
+    		 for (int i = 0; i < childrenC.size(); i++)
+    		 {
+    			 char c = childrenC.get(i);
+    			 nodeQueue.add(node.getChild(c));
+    		 }
     		 
     		 
     	 }
