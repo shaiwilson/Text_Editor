@@ -94,7 +94,6 @@ public class NearbyWords implements SpellingSuggest {
 			}
 		}
 		
-		
 	}
 
 	/** Add to the currentList Strings that are one character deletion away
@@ -141,15 +140,35 @@ public class NearbyWords implements SpellingSuggest {
 		// insert first node
 		queue.add(word);
 		visited.add(word);
-					
-		// TODO: Implement the remainder of this method, see assignment for algorithm
 		
+		int count = 0;
+		int there = 0;
+		
+		while(!queue.isEmpty() && count < numSuggestions && there < THRESHOLD){
+			String curr = queue.remove(0);
+			List<String> distx = distanceOne(curr, false);
+			for (String s: distx){
+				if (!visited.contains(s))
+				{
+					queue.add(s);
+					visited.add(s);
+					if (dict.isWord(s))
+					{
+						retList.add(s);
+						count++;
+					}
+				}
+				
+				there++;
+			}
+		}
 		return retList;
 
 	}	
 
    public static void main(String[] args) {
-	   /* basic testing code to get started
+	   
+	   /* 
 	   String word = "i";
 	   // Pass NearbyWords any Dictionary implementation you prefer
 	   Dictionary d = new DictionaryHashSet();
